@@ -27,8 +27,8 @@ defmodule HelloworksEx.MixProject do
       {:excoveralls, "~> 0.10", only: [:test]},
       {:syringe, "~> 1.1"},
       {:jason, "~> 1.0"},
-      {:tesla, "~> 1.4.0"},
-      {:hackney, "~> 1.16.0"}
+      {:tesla, "~> 1.4.4"},
+      {:ibrowse, "~> 4.2"}
     ]
   end
 end

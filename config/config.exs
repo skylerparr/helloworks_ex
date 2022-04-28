@@ -1,5 +1,5 @@
 import Config
 
-config :tesla, adapter: Tesla.Adapter.Hackney
+config :tesla, :adapter, Tesla.Adapter.Ibrowse
 
 import_config "#{Mix.env()}.exs"
