@@ -7,7 +7,6 @@ defmodule HelloworksEx do
         middleware = [
           {Tesla.Middleware.BaseUrl, Config.base_url()},
           {Tesla.Middleware.Headers, [{"Authorization", "Bearer #{token.token}"}]},
-          {Tesla.Middleware.Timeout, [timeout: 120_000]},
           Tesla.Middleware.JSON
         ]
 
