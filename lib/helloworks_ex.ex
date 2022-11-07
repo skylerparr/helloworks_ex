@@ -24,6 +24,7 @@ defmodule HelloworksEx do
              body: %{"data" => body}
            }} ->
             {:ok, body}
+
           e ->
             e
         end

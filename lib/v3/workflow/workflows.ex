@@ -46,18 +46,21 @@ defmodule HelloworksEx.V3.Workflow.Workflows do
           {:ok, binary()} | {:error, :worklow_not_found} | {:error, :forbidden}
   def download_workflow_csv(auth_token, workflow_id, start_date, end_date) do
     params = %{start_date: start_date, end_date: end_date}
+
     auth_token
     |> client()
     |> Tesla.post(@path <> "/#{workflow_id}/csv", params)
     |> case do
-         {:ok,
-           %Tesla.Env{
-             status: 200,
-             body: body
-           }} ->
-           {:ok, body}
+      {:ok,
+       %Tesla.Env{
+         status: 200,
+         body: body
+       }} ->
+        {:ok, body}
+
       {:ok, %Tesla.Env{status: 403}} ->
         {:error, :forbidden}
+
       {:ok, %Tesla.Env{status: 404}} ->
         {:error, :workflow_not_found}
     end
