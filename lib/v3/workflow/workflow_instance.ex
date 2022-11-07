@@ -124,4 +124,23 @@ defmodule HelloworksEx.V3.Workflow.WorkflowInstance do
         {:error, :workflow_not_found}
     end
   end
+
+  @spec get_workflow_instance_document(AuthToken.t(), String.t(), String.t()) ::
+          {:ok, binary()} | {:error, :workflow_instance_not_found}
+  def get_workflow_instance_document(auth_token, workflow_instance_id, document_id) do
+    auth_token
+    |> client()
+    |> Tesla.get(@path <> workflow_instance_id <> "/documents/#{document_id}")
+    |> case do
+      {:ok,
+       %Tesla.Env{
+         body: body,
+         status: 200
+       }} ->
+        {:ok, body}
+
+      {:ok, %Tesla.Env{status: 404}} ->
+        {:error, :workflow_not_found}
+    end
+  end
 end
